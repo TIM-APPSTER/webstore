@@ -4,12 +4,11 @@ import './App.css'
 
 function App() {
     const [isUserLoggedIn, setUserLoggedIn] = useState(false)
-    const login = "TIM"
-    const password = "TIM"
     const handleLoginChangeClick = () => setUserLoggedIn(prev => !prev)
     if (isUserLoggedIn) {
         return (
             <>
+                <h1>Добро пожаловать!</h1>
                 <button type={"button"} onClick={handleLoginChangeClick}>Выйти с магазина</button>
                 <Shop/>
             </>
@@ -19,7 +18,7 @@ function App() {
     } else if (!isUserLoggedIn) {
         return (
             <div className={"login-form"}>
-                <h1>Нужно залогинится!</h1>
+                <h1>Нужно авторизоваться!</h1>
                 <form className={"login-group"}>
                     <label htmlFor={"login"}>Введите логин</label>
                     <input type={"text"} id={"login"}/>
@@ -29,7 +28,7 @@ function App() {
                     <input type={"password"} id={"password"}/>
                     <br/>
                     <br/>
-                    <input type={"submit"} value={"Продолжить"}/>
+                    <input type={"submit"} value={"Продолжить"} onClick={handleLoginChangeClick} />
                 </form>
             </div>
         )
