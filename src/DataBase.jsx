@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-export default function DataBase({login,password, id}){
+export default function DataBase({login,password, idd}){
     const [baza,setBaza] = useState([])
 
     function CreateUser({login, password}) {
@@ -11,10 +11,13 @@ export default function DataBase({login,password, id}){
     function FindUser({login, password}) {
         return baza.some(user => user.login === login && user.password === password)
     }
-    if (id === "зарегистрироваться") {
+    if (idd === "зарегистрироваться" && !FindUser({login, password})) {
         CreateUser({login, password})
-    } else {
+        return true
+    } else if (idd === "авторизоваться") {
         return FindUser({login, password})
+    } else {
+        return false
     }
 }
 
