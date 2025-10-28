@@ -1,39 +1,35 @@
 import {useState} from 'react'
 import Shop from './Shop.jsx'
+import DataBase from './DataBase.jsx'
+
 import './App.css'
 
 function App() {
-    const [isUserLoggedIn, setUserLoggedIn] = useState(false)
-    const handleLoginChangeClick = () => setUserLoggedIn(prev => !prev)
-    if (isUserLoggedIn) {
-        return (
-            <>
-                <h1>Добро пожаловать!</h1>
-                <button type={"button"} onClick={handleLoginChangeClick}>Выйти с магазина</button>
-                <Shop/>
-            </>
-        )
-
-
-    } else if (!isUserLoggedIn) {
-        return (
-            <div className={"login-form"}>
-                <h1>Нужно авторизоваться!</h1>
-                <form className={"login-group"}>
-                    <label htmlFor={"login"}>Введите логин</label>
-                    <input type={"text"} id={"login"}/>
-                    <br/>
-                    <br/>
-                    <label htmlFor={"login"}>Введите пароль</label>
-                    <input type={"password"} id={"password"}/>
-                    <br/>
-                    <br/>
-                    <input type={"submit"} value={"Продолжить"} onClick={handleLoginChangeClick} />
-                </form>
-            </div>
-        )
-
+    const [login, setLogin] = useState("авторизоваться")
+    function handleCheckboxChange(event) {
+        if (event.target.checked) {
+            setLogin('зарегистрироваться')
+        } else {
+            setLogin('авторизоваться')
+        }
     }
+    return (
+        <>
+            <h1>Нужно {login}!</h1>
+            <div className={"start-menu"}>
+                <label className={'switch'}>
+                    <input type={'checkbox'} id={"bik"} onChange={handleCheckboxChange}/>
+                    <span className={'slider'}></span>
+                </label>
+
+                <label htmlFor={'login'}>Логин</label>
+                <input id={'login'} />
+
+                <label htmlFor={'password'}>Пароль</label>
+                <input id={'password'} />
+            </div>
+        </>
+    )
 }
 
 export default App
