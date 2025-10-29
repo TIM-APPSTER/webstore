@@ -1,7 +1,7 @@
 import {useState} from 'react'
 import Shop from './Shop.jsx'
 import DataBase from './DataBase.jsx'
-
+import ItemPage from './ItemPage.jsx'
 import './App.css'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [loginName, setLoginName] = useState("")
     const [password, setPassword] = useState("")
-
+    const [isAddItem, setIsAddItem] = useState(false)
     function handleCheckboxChange(event) {
         if (event.target.checked) {
             setLogin('зарегистрироваться')
@@ -26,7 +26,10 @@ function App() {
     }
 
     if (isLoggedIn) {
-        return <Shop setIsLoggedIn={setIsLoggedIn}/>
+        return <Shop setIsLoggedIn={setIsLoggedIn} setIsAddItem={setIsAddItem}/>
+
+    } else if (isAddItem){
+        return <ItemPage setIsLoggedIn={setIsLoggedIn} setIsAddItem={setIsAddItem}/>
     } else {
         return (
             <>
