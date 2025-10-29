@@ -4,8 +4,6 @@ export default function Shop({setIsLoggedIn, setIsAddItem}) {
     const handleChangePage = () => {
         setIsAddItem(true)
         setIsLoggedIn(false)
-
-
     }
     return (
         <>
